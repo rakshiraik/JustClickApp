@@ -1,0 +1,42 @@
+<!-- .block-products -->
+<div class="block block-products block-products--layout--{{ layout }}">
+    <div class="container">
+        <app-block-header [header]="header"></app-block-header>
+
+        <div class="block-products__body">
+            
+            <ng-template #smallsTemplate>
+                <div *ngIf="smalls.length > 0" class="block-products__list">
+                    <div *ngFor="let product of smalls" class="block-products__list-item">
+                        <app-product-card [product]="product"></app-product-card>
+                    </div>
+                </div>
+            </ng-template>
+
+            <ng-template #largeTemplate>
+                <ng-container *ngIf="large !== null">
+                    <div class="block-products__featured">
+                        <div class="block-products__featured-item"  style="background-color:dimgrey;height: 70%;">
+                            <app-product-card [product]="large"></app-product-card>
+                            <!-- <div class="product-card" style="background-color:dimgrey;height: 60%;justify-content: center;">
+                                <h2 style="color: white;text-align: center;">Add</h2>
+                            </div> -->
+                        </div>
+                        <br/>
+                        <div class="block-products__featured-item">
+                            <!-- <app-product-card [product]="small"></app-product-card> -->
+                            <div class="product-card" style="background-color:dimgrey;height: 250px;justify-content: center;">
+                                <h2 style="color: white;text-align: center;">Add</h2>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-template>
+
+            <ng-container *ngIf="layout === 'large-last'" [ngTemplateOutlet]="smallsTemplate"></ng-container>
+            <ng-container [ngTemplateOutlet]="largeTemplate"></ng-container>
+            <ng-container *ngIf="layout === 'large-first'" [ngTemplateOutlet]="smallsTemplate"></ng-container>
+        </div>
+    </div>
+</div>
+<!-- .block-products / end -->

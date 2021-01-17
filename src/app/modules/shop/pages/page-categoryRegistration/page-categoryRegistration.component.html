@@ -1,0 +1,58 @@
+<app-page-header [header]="'Category Register'" [breadcrumbs]="[
+    {label: 'Home',          url: root.home()},
+    {label: 'Shopping Cart', url: root.cart()},
+    {label: 'Checkout',      url: ''}
+]"></app-page-header>
+
+<div class="checkout block">
+    <div class="container">
+        <div class="row">
+
+            <!-- <div class="col-12 col-lg-6 col-xl-7"> -->
+                <div class="col-12">
+                <div class="card mb-lg-0">
+                    <form action="your-action" [formGroup]="categoryRegistrationForm">
+                        <div class="card-body">
+                            <h3 class="card-title">Category Registration Form</h3>
+                
+                            <div class="form-group">
+                                <label for="checkout-company-name">Name</label>
+                                <input type="text" formControlName="CategoryName" class="form-control" id="checkout-name" placeholder="Category Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="checkout-country">Parent Category</label>                           
+                                    <select class="form-control" formControlName="ParentId" >  
+                                                             <option value="0">--Select--</option>  
+                                                             <option *ngFor="let lang of CategorySource"  
+                                                                     value={{lang.CategoryId}}>  
+                                                                 {{lang.categoryName}}  
+                                                             </option>  
+                                      </select>  
+                              
+                            </div>
+                
+                        </div>
+                        <div class="card-divider"></div>
+                        <div class="card-body">
+                            <button type="submit" class="btn btn-primary btn-xl btn-block" (click)='OnSave_click()'>Save</button>
+                        </div>
+
+                        <div class="panel-footer">
+
+         
+
+                        <div  >
+                                <div class="alert alert-success" *ngIf="messages">{{messages}}</div>                          
+         
+                                    <div class="alert alert-danger" *ngIf="errors">{{errors}}</div>
+                                </div>
+
+                    </div>
+                    </form>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+</div>
